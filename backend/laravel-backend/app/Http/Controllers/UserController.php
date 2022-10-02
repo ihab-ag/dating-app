@@ -10,6 +10,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     function signUp(Request $request){
+
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -18,7 +19,7 @@ class UserController extends Controller
         $user= new User([
             'name' => $request -> input("name"),
             'email' => $request -> input("email"),
-            'password' => bcrypt($request -> input("password"))
+            'password' => Hash::make($request -> input("password"))
         ]);
 
         $user->save();
@@ -27,5 +28,15 @@ class UserController extends Controller
         ]);
     }
 
-    
+    function signIn(Request $request){
+
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+        ]);
+        
+        $credentials= $request->only('email','password');
+
+        $token = Auth::attempt($credentials);
+    }
 }
