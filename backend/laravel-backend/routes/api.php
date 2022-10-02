@@ -14,7 +14,8 @@ use App\Http\Controllers\UserController;
 |
 */
 Route::post("/signup", [UserController::class, "signUp"]);
+Route::post("/signin", [UserController::class, "signIn"]);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(["middleware" => "auth"], function(){
+
 });

@@ -13,7 +13,7 @@ class UserController extends Controller
 
         $this->validate($request,[
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users'
         ]);
 
         $user= new User([
@@ -24,19 +24,35 @@ class UserController extends Controller
 
         $user->save();
         return response()->json([
-            "message"=>"Success"
+            "message"=>"Success",
+            200
         ]);
     }
 
     function signIn(Request $request){
 
-        $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
         ]);
-        
-        $credentials= $request->only('email','password');
+        $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        $user = Auth::user();
+        return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
     }
 }
