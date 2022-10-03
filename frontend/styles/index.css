@@ -5,7 +5,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:#242424;
 }
-
+body{
+    background-color: #00000004;
+}
 img{
     height: 100%;
 }
@@ -81,6 +83,8 @@ label{
 .login > .container{
     border: #eb2e2e solid 2px;
     border-radius: 5px;
+    
+    background-color:white;
 }
 .login > .flex-column{
     height: 70%;
