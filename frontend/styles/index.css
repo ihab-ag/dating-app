@@ -8,3 +8,27 @@
 img{
     height: 100%;
 }
+
+/* utilities */
+
+.container{
+    padding:15px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.red{
+    color:#eb2e2e;
+}
+
+.light-grey{
+    color: #5c5c5c;
+}
