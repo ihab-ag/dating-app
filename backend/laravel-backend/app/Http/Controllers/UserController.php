@@ -13,7 +13,14 @@ class UserController extends Controller
 
         $this->validate($request,[
             'name' => 'required',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'password'=>[
+                'required',
+                'min:6',
+                'regex:/[a-z]/',
+                'regex:/[0-9]/',
+                'regex:/[A-Z]/'
+            ]
         ]);
 
         $user= new User([
