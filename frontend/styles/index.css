@@ -87,8 +87,8 @@ label{
     background-color:white;
 }
 .login > .flex-column{
-    height: 70%;
-    width: 50%;
+    height: 80%;
+    width: 80%;
     gap: 20px;
     justify-content: center;
 }
@@ -103,6 +103,12 @@ label{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+    .login > .flex-column{
+        height: 70%;
+        width: 50%;
+        gap: 20px;
+        justify-content: center;
     }
     .btn{
         width:65px;
