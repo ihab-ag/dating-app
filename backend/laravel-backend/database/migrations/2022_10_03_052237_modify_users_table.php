@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('interest');
             $table->tinyInteger('private')->default('0');
-            $table->string('bio');
+            $table->string('bio')->nullable();
         });
 
         Schema::create('pictures', function (Blueprint $table) {
