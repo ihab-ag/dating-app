@@ -3,26 +3,56 @@ const location_btn= document.getElementById('location-btn');
 const signup_form= document.getElementById('signup');
 const longitude= signup_form.elements.longitude;
 const latitude= signup_form.elements.latitude;
+const name= signup_form.elements.name;
+const email= signup_form.elements.email;
+const password= signup_form.elements.password;
+const gender= signup_form.elements.gender;
+const interest= signup_form.elements.interest;
 const validation_msg= document.getElementById('validation');
-
+const signup_submit=document.getElementById('signup-submit');
 // functions
 // get geolocation from browser
-getLocation=()=>{
+const getLocation=()=>{
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
-      validation_msg.innerHTML = "Geolocation is not supported by this browser.";
+      validation_msg.innerText = "Geolocation is not supported by this browser.";
     }
   }
 // get position values
-showPosition=(position)=> {
+const showPosition=(position)=> {
     longitude.value= position.coords.longitude;
     latitude.value= position.coords.latitude;
   }
-// validation
-
+// signup validation
+const validation=()=>{
+    if(name.value==""){
+        return "Name cannot be empty";
+    }
+    else if((!(/\w{3,}[@]\w{5,}[.][a-zA-Z]*$/).test(email.value))||email.value==""){
+        return "Email must be in the following format: name@mail.com";
+    }
+    else if((!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(password.value))||password.value==""){
+        return "Password must be at least 8 chars long with at least one uppercase, lowercase and numeric character";
+    }
+    else if(longitude.value==""||latitude.value==""){
+        return "Enter location";
+    }
+    else if(gender.value!='male'&&gender.value!='female'){
+        return "Choose gender";
+    }
+    else if(gender.value!='male'&&gender.value!='female'&&gender.value!='both'){
+        return "Choose interest";
+    }
+    else
+    return "good";
+}
 // events
 location_btn.onclick=(e)=>{
     e.preventDefault();
     getLocation();
+}
+signup_submit.onclick=(e)=>{
+    e.preventDefault();
+    validation_msg.innerHTML= validation();
 }
