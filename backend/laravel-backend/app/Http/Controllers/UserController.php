@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Location;
 
 class UserController extends Controller
 {
     function signUp(Request $request){
-
+// validation
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -25,7 +26,7 @@ class UserController extends Controller
             'gender' => 'required',
             'interest' => 'required'
         ]);
-
+// create new user
         $user= new User([
             'name' => $request -> input("name"),
             'email' => $request -> input("email"),
@@ -33,10 +34,16 @@ class UserController extends Controller
             'age' => $request -> input("age"),
             'gender' => $request -> input("gender"),
             'interest' => $request -> input("interest"),
-            'bio' => $request -> input("bio"),
+            'bio' => " ",
         ]);
-
+// create location for user
+        $location= new Location([
+            'longitude' => $request -> input('longitude'),
+            'latitude' => $request -> input('latitude'),
+        ]);
+// save user and location
         $user->save();
+        $user->location()->save($location);
         return response()->json([
             "message"=>"Success",
             200
@@ -49,8 +56,9 @@ class UserController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
+// get email and pass
         $credentials = $request->only('email', 'password');
-
+// authenticate user
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
@@ -60,11 +68,7 @@ class UserController extends Controller
         }
 
         $user = Auth::user();
-
-        $picture = $user->location;
-
-        return $picture;
-
+// return authenticated user with jwt
         return response()->json([
                 'status' => 'success',
                 'user' => $user,

@@ -24,15 +24,16 @@ return new class extends Migration
         Schema::create('pictures', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('url');
-
+            $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('locations', function (Blueprint $table) {
             $table->id('user_id')->references('id')->on("users");
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->double('longitude',10,8);
+            $table->double('latitude',10,8);
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
         });
