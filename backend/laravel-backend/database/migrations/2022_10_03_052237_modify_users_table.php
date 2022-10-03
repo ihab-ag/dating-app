@@ -22,14 +22,19 @@ return new class extends Migration
         });
 
         Schema::create('pictures', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->id('user_id');
             $table->string('url');
+
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('locations', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->id('user_id')->references('id')->on("users");
             $table->float('longitude');
             $table->float('latitude');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

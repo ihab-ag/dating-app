@@ -68,12 +68,12 @@ class User extends Authenticatable implements JWTSubject
     // return picture
     public function picture(){
 
-        return $this->hasOne(App/Picture,user_id);
+        return $this->hasOne(Picture::class,'user_id');
     }
     // return location
     public function location(){
 
-        return $this->hasOne(App/Location,user_id);
+        return $this->hasOne(Location::class,'user_id');
     }
 
 

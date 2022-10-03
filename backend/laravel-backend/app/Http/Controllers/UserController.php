@@ -60,6 +60,11 @@ class UserController extends Controller
         }
 
         $user = Auth::user();
+
+        $picture = $user->location;
+
+        return $picture;
+
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
