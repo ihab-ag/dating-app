@@ -9,23 +9,21 @@
     </head>
     <body>
         <section class="login">
-            <div class="container">
-                <form id="login" class="flex-column"></form>
-                    <h1 class="red">Date Fast</h1>
-                    <div class="input-container">
-                        <label for="login-email">email</label>
-                        <input type="email" class="input__text" name="email" id="login-email">
-                    </div>
-                    <div class="input-container">
-                        <label for="login-password">password</label>
-                        <input type="password" class="input__text" name="password" id="login-password">
-                    </div>
-                    <div class="flex-row">
-                        <p class="light-grey">new here? <a href="#" class="red">Sign up</a></p>
-                        <input type="submit" value="Login" class="btn">
-                    </div>
-                </form>
-            </div>
+            <form id="login"class="container flex-column">
+                <h1 class="red">Date Fast</h1>
+                <div class="flex-column">
+                    <label for="login-email">Email:</label>
+                    <input type="email" class="input__text" name="email" id="login-email">
+                </div>
+                <div class="flex-column">
+                    <label for="login-password">Password:</label>
+                    <input type="password" class="input__text" name="password" id="login-password">
+                </div>
+                <div class="flex-column desktop-row">
+                    <p class="light-grey">New here? <a href="#" class="red">Sign up</a></p>
+                    <input type="submit" value="Login" class="btn">
+                </div>
+            </form>
         </section>
     </body>
 </html>
