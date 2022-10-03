@@ -125,7 +125,7 @@ input:disabled{
 /* sign up */
 .signup{
     height: 100vh;
-    width: 100%;
+    width: 00%;
     overflow-x: hidden;
     display: flex;
     justify-content: center;

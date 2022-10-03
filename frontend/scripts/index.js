@@ -10,6 +10,9 @@ const gender= signup_form.elements.gender;
 const interest= signup_form.elements.interest;
 const validation_msg= document.getElementById('validation');
 const signup_submit=document.getElementById('signup-submit');
+const close= document.getElementById('close');
+const signup= document.querySelector('.signup');
+const signup_section_btn = document.getElementById('signup-section-btn');
 // functions
 // get geolocation from browser
 const getLocation=()=>{
@@ -55,4 +58,10 @@ location_btn.onclick=(e)=>{
 signup_submit.onclick=(e)=>{
     e.preventDefault();
     validation_msg.innerHTML= validation();
+}
+close.onclick=()=>{
+    signup.style.width=0;
+}
+signup_section_btn.onclick=()=>{
+    signup.style.width='100%';
 }
