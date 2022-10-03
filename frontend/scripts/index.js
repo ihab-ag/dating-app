@@ -15,10 +15,11 @@ getLocation=()=>{
     }
   }
 // get position values
-function showPosition(position) {
+showPosition=(position)=> {
     longitude.value= position.coords.longitude;
     latitude.value= position.coords.latitude;
   }
+// validation
 
 // events
 location_btn.onclick=(e)=>{
