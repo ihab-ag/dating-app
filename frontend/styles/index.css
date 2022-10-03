@@ -58,6 +58,14 @@ label{
 
 .input__text{
     height:25px;
+    border:solid #242424 1px;
+    border-radius: 5px;
+}
+
+.input__text:focus{
+    outline: none;
+    border: 2px solid #eb2e2e;
+    
 }
 /* login section */
 .login{
