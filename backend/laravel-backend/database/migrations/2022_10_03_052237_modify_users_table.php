@@ -18,6 +18,18 @@ return new class extends Migration
             $table->string('gender');
             $table->string('interest');
             $table->tinyInteger('private')->default('0');
+            $table->string('bio');
+        });
+
+        Schema::create('pictures', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->string('url');
+        });
+
+        Schema::create('locations', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->float('longitude');
+            $table->float('latitude');
         });
     }
 
