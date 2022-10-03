@@ -20,7 +20,10 @@ class UserController extends Controller
                 'regex:/[a-z]/',
                 'regex:/[0-9]/',
                 'regex:/[A-Z]/'
-            ]
+            ],
+            'age' => 'required',
+            'gender' => 'required',
+            'interest' => 'required'
         ]);
 
         $user= new User([
