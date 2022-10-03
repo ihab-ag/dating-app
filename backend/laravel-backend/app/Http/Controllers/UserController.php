@@ -29,7 +29,11 @@ class UserController extends Controller
         $user= new User([
             'name' => $request -> input("name"),
             'email' => $request -> input("email"),
-            'password' => Hash::make($request -> input("password"))
+            'password' => Hash::make($request -> input("password")),
+            'age' => $request -> input("age"),
+            'gender' => $request -> input("gender"),
+            'interest' => $request -> input("interest"),
+            'bio' => $request -> input("bio"),
         ]);
 
         $user->save();
