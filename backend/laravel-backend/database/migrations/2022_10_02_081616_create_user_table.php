@@ -25,6 +25,11 @@ return new class extends Migration
             $tale->remeberToken();
             $table->timestamps();
         });
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            
+        });
     }
 
     /**
