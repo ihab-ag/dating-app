@@ -15,10 +15,10 @@ class UsersController extends Controller
     public function getUsers(){
         $user=auth::user();
 
-        $long_max= $user->location->longitude +20;
-        $lat_max= $user->location->latitude +20;
-        $long_min= $user->location->longitude -20;
-        $lat_min= $user->location->latitude -20;
+        $long_max= $user->location->longitude +50;
+        $lat_max= $user->location->latitude +50;
+        $long_min= $user->location->longitude -50;
+        $lat_min= $user->location->latitude -50;
 
         $users = DB::table('users')
         ->join('locations', 'users.id', '=', 'locations.user_id')
@@ -26,10 +26,16 @@ class UsersController extends Controller
         ->whereBetween('longitude', [$long_min, $long_max])
         ->whereBetween('latitude', [$lat_min, $lat_max])
         ->whereNot('id',$user->id)
-        ->hide('password')
         ->get();
+        
 
         return response()->json($users);
         
+    }
+
+    public function getFavourites(){
+            $user=auth::user();
+
+            return response()->json(['users'=>$user->favourite]);
     }
 }

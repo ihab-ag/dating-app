@@ -76,5 +76,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Location::class,'user_id');
     }
 
+    public function favourite()
+    {
+        return $this->belongsToMany(user_favourite::class, 'favourites', 'favourite_id', 'user_id');
+    }
 
 }
