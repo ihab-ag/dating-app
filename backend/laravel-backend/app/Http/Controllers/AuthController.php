@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Location;
+use App\Models\Picture;
 
 class AuthController extends Controller
 {
     function signUp(Request $request){
-// validation
+    // validation
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -26,7 +27,7 @@ class AuthController extends Controller
             'gender' => 'required',
             'interest' => 'required'
         ]);
-// create new user
+    // create new user
         $user= new User([
             'name' => $request -> input("name"),
             'email' => $request -> input("email"),
@@ -36,12 +37,12 @@ class AuthController extends Controller
             'interest' => $request -> input("interest"),
             'bio' => " ",
         ]);
-// create location for user
+    // create location for user
         $location= new Location([
             'longitude' => $request -> input('longitude'),
             'latitude' => $request -> input('latitude'),
         ]);
-// save user and location
+    // save user and location
         $user->save();
         $user->location()->save($location);
         return response()->json([
@@ -56,9 +57,9 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-// get email and pass
+    // get email and pass
         $credentials = $request->only('email', 'password');
-// authenticate user
+    // authenticate user
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
@@ -68,7 +69,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-// return authenticated user with jwt
+    // return authenticated user with jwt
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
@@ -78,9 +79,9 @@ class AuthController extends Controller
                 ]
             ]);
     }
-// refresh token
-    public function refresh()
-    {
+    // refresh token
+    public function refresh(){
+
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
@@ -90,4 +91,43 @@ class AuthController extends Controller
             ]
         ]);
     }
+    // get user
+    public function getUser(){
+        $user= Auth::user();
+        return response()->json([
+            'status'=>'success',
+            'user' => [$user,
+            $user->location[0],
+            $user->picture[0]],
+        ]);
+    }
+     // update user
+     public function updateUser(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
+            'interest' => 'required'
+        ]);
+        $user= Auth::user();
+
+        $user->update([
+            'name'=> $request->name,
+            'bio'=> $request->bio,
+            'private'=> $request->private,
+            'gender'=> $request->gender,
+            'interest'=> $request->interest
+        ]);
+
+        $location= new location([
+            'latitude'=> $request->latitude,
+            'longitude'=> $request->longitude,
+        ]);
+
+        $picture= new picture(['url'= getUrl()]);
+
+        $user->location()->save($location);
+        $user->picture()->save($picture);
+
+     }
 }
