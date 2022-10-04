@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Location;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     function signUp(Request $request){
 // validation
