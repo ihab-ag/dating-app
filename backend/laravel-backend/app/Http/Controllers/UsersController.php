@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Location;
 use App\Models\Picture;
 use App\Models\user_favourites;
+use App\Models\user_blocks;
 
 class UsersController extends Controller
 {
@@ -52,5 +53,16 @@ class UsersController extends Controller
         ]);
 
         $fav->save();
+    }
+
+    public function addBlock(Request $request){
+        $user=auth::user();
+
+        $fblocked = new user_blocks([
+            'user_id'=>$user->id,
+            'blocked_id'=>$request->id
+        ]);
+
+        $blocked->save();
     }
 }
