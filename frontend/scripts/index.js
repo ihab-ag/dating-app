@@ -58,12 +58,12 @@ const validation=()=>{
 // send sign up request
 const postReq= async (route,data,token=null)=>{
     try{
-        return await axois.post(base_url+route,data,{
+        return await axios.post(base_url+route,data,{
             headers: {
             'Authorization': 'Bearer ' + token
           }});
     }catch(error) {
-        return "failed: "+error.response.data.message;
+        return error;
     }
 }
 // events
@@ -73,7 +73,14 @@ location_btn.onclick=(e)=>{
 }
 signup_submit.onclick=(e)=>{
     e.preventDefault();
-    validation_msg.innerHTML= validation();
+    validation_msg.innerText= validation();
+    if(validation_msg.innerText=="good"){
+        route="signup";
+        data= new FormData(signup_form);
+        data.append('longitude',longitude.value);
+        data.append('latitude',latitude.value);
+        postReq(route,data);
+    }
 }
 close.onclick=()=>{
     signup.style.width=0;
