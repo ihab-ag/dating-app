@@ -1,4 +1,5 @@
 // DOM elements
+// signup elements
 const location_btn= document.getElementById('location-btn');
 const signup_form= document.getElementById('signup');
 const longitude= signup_form.elements.longitude;
@@ -12,12 +13,17 @@ const validation_msg= document.getElementById('validation');
 const signup_submit=document.getElementById('signup-submit');
 const close= document.getElementById('close');
 const signup= document.querySelector('.signup');
+// login elements
+const login_form= document.getElementById('login');
+const login_submit= document.getElementById('submit-login');
 const signup_section_btn = document.getElementById('signup-section-btn');
+const signin_msg= document.getElementById('signin-msg');
 // variables
 const base_url="http://127.0.0.1:8000/api/";
 let route;
 let data;
 let token;
+let response;
 // functions
 // get geolocation from browser
 const getLocation=()=>{
@@ -71,7 +77,7 @@ location_btn.onclick=(e)=>{
     e.preventDefault();
     getLocation();
 }
-signup_submit.onclick=(e)=>{
+signup_submit.onclick=async (e)=>{
     e.preventDefault();
     validation_msg.innerText= validation();
     if(validation_msg.innerText=="good"){
@@ -79,7 +85,7 @@ signup_submit.onclick=(e)=>{
         data= new FormData(signup_form);
         data.append('longitude',longitude.value);
         data.append('latitude',latitude.value);
-        postReq(route,data);
+        await postReq(route,data);
     }
 }
 close.onclick=()=>{
@@ -87,4 +93,17 @@ close.onclick=()=>{
 }
 signup_section_btn.onclick=()=>{
     signup.style.width='100%';
+}
+login_submit.onclick=async (e)=>{
+    e.preventDefault();
+    route="signin";
+    data= new FormData(login_form);
+    response= await postReq(route,data);
+    if(response['data']){
+        localStorage.setItem("token",response['data'].authorisation['token']);
+        console.log(localStorage.getItem('token'));
+    }
+    else{
+        signin_msg.innerText= "Login failed";
+    }
 }
