@@ -13,6 +13,11 @@ const signup_submit=document.getElementById('signup-submit');
 const close= document.getElementById('close');
 const signup= document.querySelector('.signup');
 const signup_section_btn = document.getElementById('signup-section-btn');
+// variables
+const base_url="http://127.0.0.1:8000/api/";
+let route;
+let data;
+let token;
 // functions
 // get geolocation from browser
 const getLocation=()=>{
@@ -49,6 +54,17 @@ const validation=()=>{
     }
     else
     return "good";
+}
+// send sign up request
+const postReq= async (route,data,token=null)=>{
+    try{
+        return await axois.post(base_url+route,data,{
+            headers: {
+            'Authorization': 'Bearer ' + token
+          }});
+    }catch(error) {
+        return "failed: "+error.response.data.message;
+    }
 }
 // events
 location_btn.onclick=(e)=>{
