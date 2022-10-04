@@ -50,12 +50,19 @@ input[type=radio]{
     color: #5c5c5c;
 }
 
+.white{
+    color:white;
+}
 h1{
     font-size: 40px;
 }
 
 h2{
     font-size: 32px;
+}
+
+h3{
+    font-size: 22px;
 }
 
 p{
@@ -179,6 +186,25 @@ input[type=radio]:checked + label {
     width: 100%;
     height: 40px;
 }
+/*  header */
+header{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eb2e2e;
+}
+header  * {
+    color: inherit;
+    cursor: pointer;
+}
+
+header ul{
+    list-style: none;
+    justify-content: space-between;
+    gap:5px;
+    width:120px;
+}
+
 /* media queries */
 @media screen and (min-width:700px) {
 
