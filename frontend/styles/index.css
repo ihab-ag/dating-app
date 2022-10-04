@@ -208,6 +208,7 @@ header ul{
 .profile >form{
     margin:auto;
     width:400px;
+    display:none;
 }
 /* media queries */
 @media screen and (min-width:700px) {
