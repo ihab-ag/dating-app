@@ -204,7 +204,11 @@ header ul{
     gap:5px;
     width:120px;
 }
-
+/* profile section */
+.profile >form{
+    margin:auto;
+    width:400px;
+}
 /* media queries */
 @media screen and (min-width:700px) {
 
