@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +21,5 @@ Route::group(["middleware" => "auth"], function(){
     Route::post("/refresh", [AuthController::class, "refresh"]);
     Route::post("/get-user", [AuthController::class, "getUser"]);
     Route::post("/update-user", [AuthController::class, "updateUser"]);
+    Route::post("/get-users", [UsersController::class, "getUsers"]);
 });
