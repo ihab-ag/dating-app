@@ -61,7 +61,7 @@ const validation=()=>{
     else
     return "good";
 }
-// send sign up request
+// send post request
 const postReq= async (route,data,token=null)=>{
     try{
         return await axios.post(base_url+route,data,{

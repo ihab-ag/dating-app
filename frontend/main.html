@@ -21,12 +21,16 @@
             <form id="signup" class="container flex-column" method="post">
                 <h2 class="red">Edit account:</h2>
                 <div class="flex-column">
-                    <label for="name">Picture:</label>
-                    <input type="file" class="input__file" name="name" id="name">
+                    <label for="file">Picture:</label>
+                    <input type="file" class="input__file" name="file" id="file">
                 </div>
                 <div class="flex-column">
                     <label for="name">Name:</label>
                     <input type="text" class="input__text" name="name" id="name">
+                </div>
+                <div class="flex-column">
+                    <label for="bio">Bio:</label>
+                    <input type="text" class="input__text" name="bio" id="bio">
                 </div>
                 <div class="flex-column signup__location">
                     <label>Location:</label>
@@ -40,6 +44,19 @@
                         <div class="flex-column">
                             <label for=""class="hidden">.</label>
                             <button class="btn" id="location-btn">Get<br>Location</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column radio-div">
+                    <label >Privacy:</label>
+                    <div class="flex-row">
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="private" value="0" id="public" checked>
+                            <label for="gender-male">Public</label>
+                        </div>
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="private" value="1" id="private">
+                            <label for="gender-female">Private</label>
                         </div>
                     </div>
                 </div>
@@ -80,6 +97,6 @@
             </form>
         </section>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="scripts/index.js"></script>
+        <script src="scripts/main.js"></script>
     </body>
 </html>
