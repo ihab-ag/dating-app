@@ -101,7 +101,6 @@ login_submit.onclick=async (e)=>{
     response= await postReq(route,data);
     if(response['data']){
         localStorage.setItem("token",response['data'].authorisation['token']);
-        console.log(localStorage.getItem('token'));
     }
     else{
         signin_msg.innerText= "Login failed";
