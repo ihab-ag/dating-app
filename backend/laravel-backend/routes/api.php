@@ -19,4 +19,5 @@ Route::post("/signin", [AuthController::class, "signIn"]);
 Route::group(["middleware" => "auth"], function(){
     Route::post("/refresh", [AuthController::class, "refresh"]);
     Route::post("/get-user", [AuthController::class, "getUser"]);
+    Route::post("/update-user", [AuthController::class, "updateUser"]);
 });

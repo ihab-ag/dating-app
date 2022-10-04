@@ -119,30 +119,32 @@ class AuthController extends Controller
             'interest'=> $request->interest
         ]);
 
-        $location= new location([
+        $location=[
             'latitude'=> $request->latitude,
             'longitude'=> $request->longitude,
-        ]);
+        ];
 
         $id = $user->id;
         $url = $request->url;
+        $url= getUrl($url,$id);
+        $picture= ['url'=> $url ];
 
-        $picture= new picture(['url'=> getUrl($url,$id)]);
+        $user->location()->update($location);
+        $user->picture()->update($picture);
 
-        $user->location()->save($location);
-        $user->picture()->save($picture);
-
+        return response()->json([
+            "status"=>"success"
+        ]);
      }
-
-     public function getUrl($url,$id){
-        $decoder = base64_decode($url);
-        $img = imagecreatefromstring($decoder);
-        $url="../public/images" . $id . ".jpg";
-        if($img){
-            imagejpeg($img, $url);
-            return $url;
-        }
-        else
-        return "not found";
-     }
+}
+function getUrl($url,$id){
+   $decoder = base64_decode($url);
+   $img = imagecreatefromstring($decoder);
+   $url="../public/images/" . $id . ".jpg";
+   if($img){
+       imagejpeg($img, $url);
+       return $url;
+   }
+   else
+   return "not found";
 }
