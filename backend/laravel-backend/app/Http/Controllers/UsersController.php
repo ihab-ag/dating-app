@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\Picture;
+use App\Models\user_favourites;
 
 class UsersController extends Controller
 {
@@ -40,5 +41,16 @@ class UsersController extends Controller
                 $res[]=$favourite;
             }
             return response()->json(['users'=>$res]);
+    }
+
+    public function addFavourite(Request $request){
+        $user=auth::user();
+
+        $fav = new user_favourites([
+            'user_id'=>$user->id,
+            'favourites_id'=>$request->id
+        ]);
+
+        $fav->save();
     }
 }

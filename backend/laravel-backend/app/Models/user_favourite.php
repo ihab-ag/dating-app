@@ -10,4 +10,9 @@ class user_favourites extends Model
     use HasFactory;
 
     protected $table = 'user_favourites';
+
+    protected $fillable = [
+        'user_id',
+        'favourite_id'
+    ];
 }
