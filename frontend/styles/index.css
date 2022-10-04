@@ -210,6 +210,29 @@ header ul{
     width:400px;
     display:none;
 }
+/* main section */
+.cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 25px;
+}
+.card{
+    height: fit-content;
+    width: 250px;
+}
+.card > .flex-row{
+    gap:20px;
+}
+.card__img{
+    width:100%;
+}
+.card__img img{
+    border-radius: 1% 1% 0 0;
+    height: auto;
+    width:100%;
+}
 /* media queries */
 @media screen and (min-width:700px) {
 
