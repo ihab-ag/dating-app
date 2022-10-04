@@ -105,7 +105,6 @@ class AuthController extends Controller
      public function updateUser(Request $request){
         $this->validate($request,[
             'name' => 'required',
-            'age' => 'required',
             'gender' => 'required',
             'interest' => 'required'
         ]);
