@@ -78,4 +78,16 @@ class UserController extends Controller
                 ]
             ]);
     }
+// refresh token
+    public function refresh()
+    {
+        return response()->json([
+            'status' => 'success',
+            'user' => Auth::user(),
+            'authorisation' => [
+                'token' => Auth::refresh(),
+                'type' => 'bearer',
+            ]
+        ]);
+    }
 }
