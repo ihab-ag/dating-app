@@ -15,6 +15,7 @@
 // variables
     let url;
     const base_url="http://127.0.0.1:8000/api/";
+    const token = localStorage.getItem('token');
 // functions
     // validation
     const validation=()=>{
@@ -69,6 +70,20 @@
         return error;
     }
     }
+    // get info of user to fill profile
+    const getUserInfo= async()=>{
+        let response= await postReq('get-user'," ",token);
+        response=response.data.user[0];
+        name.value=response.name;
+        bio.value=response.bio;
+        longitude.value=response.location.longitude;
+        latitude.value=response.location.latitude;
+        privacy.value=response.private;
+        gender.value=response.gender;
+        interest.value=response.interest;
+        url=response.picture.url;
+
+    }
 // events
     file.onchange=async(e)=>{
         await getImage(e);
@@ -86,6 +101,8 @@
             data.append('longitude',longitude.value);
             data.append('latitude',latitude.value);
             data.append('url',url);
-            await postReq(route,data,localStorage.getItem('token'));
+            await postReq(route,data,token);
         }
     }
+    // main
+    getUserInfo();
