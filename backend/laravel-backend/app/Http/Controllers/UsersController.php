@@ -35,7 +35,10 @@ class UsersController extends Controller
 
     public function getFavourites(){
             $user=auth::user();
-
-            return response()->json(['users'=>$user->favourite]);
+            $res=[];
+            foreach ($user->favourite as $favourite) {
+                $res[]=$favourite;
+            }
+            return response()->json(['users'=>$res]);
     }
 }
