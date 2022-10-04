@@ -17,5 +17,5 @@ Route::post("/signup", [AuthController::class, "signUp"]);
 Route::post("/signin", [AuthController::class, "signIn"]);
 
 Route::group(["middleware" => "auth"], function(){
-
+    Route::post("/refresh", [AuthController::class, "refresh"]);
 });
