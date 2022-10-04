@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->id();
             $table->unsignedBigInteger('blocked_id');
+            $table->timestamps();
         });
     }
 

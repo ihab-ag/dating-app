@@ -44,12 +44,12 @@ class UsersController extends Controller
             return response()->json(['users'=>$res]);
     }
 
-    public function addFavourite(Request $request){
+    public function addFavourites(Request $request){
         $user=auth::user();
 
         $fav = new user_favourites([
             'user_id'=>$user->id,
-            'favourites_id'=>$request->id
+            'favourite_id'=>$request->id
         ]);
 
         $fav->save();

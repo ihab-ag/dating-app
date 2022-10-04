@@ -23,4 +23,6 @@ Route::group(["middleware" => "auth"], function(){
     Route::post("/update-user", [AuthController::class, "updateUser"]);
     Route::post("/get-users", [UsersController::class, "getUsers"]);
     Route::post("/favourites", [UsersController::class, "getFavourites"]);
+    Route::post("/add-favourite", [UsersController::class, "addFavourites"]);
+    Route::post("/add-block", [UsersController::class, "addBlock"]);
 });
