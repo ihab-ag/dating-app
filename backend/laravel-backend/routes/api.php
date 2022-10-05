@@ -26,5 +26,6 @@ Route::group(["middleware" => "auth"], function(){
     Route::post("/add-favourite", [UsersController::class, "addFavourites"]);
     Route::post("/add-block", [UsersController::class, "addBlock"]);
     Route::post("/chats", [UsersController::class, "getChat"]);
+    Route::post("/send-message", [UsersController::class, "sendMessage"]);
 
 });

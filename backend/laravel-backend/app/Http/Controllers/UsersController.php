@@ -120,6 +120,7 @@ class UsersController extends Controller
         foreach($chat as $item){
            $chat_id= $item->pivot->id; 
         }
+
         $response=[];
         $messages= Message::where('chat_id',$chat_id)->get();
         foreach($messages as $message){
@@ -131,4 +132,16 @@ class UsersController extends Controller
         ]);
     }
 
+    public function sendMessage(Request $request){
+        
+        $user=Auth::user();
+
+        $message = new Message([
+            'user_id'=>$user->id,
+            'chat_id'=>$request->chat_id,
+            'messages'=>$request->message
+        ]);
+
+        $message->save();
+    }
 }
