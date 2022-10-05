@@ -33,10 +33,11 @@ class UsersController extends Controller
             $block_exist[]=$block->id;
         }
 
-        $users = DB::table('users')
-        ->join('locations', 'users.id', '=', 'locations.user_id')
+        $users = User::
+        join('locations', 'users.id', '=', 'locations.user_id')
         ->join('pictures', 'users.id', '=', 'pictures.user_id')
-        ->whereNot('id',$user->id);
+        ->whereNot('id',$user->id)
+        ->where('private',0);
         
         if($interest=="male"){
             $users= $users
@@ -66,11 +67,11 @@ class UsersController extends Controller
 
     public function getFavourites(){
             $user=auth::user();
-            $res=[];
-            foreach ($user->favourite as $favourite) {
-                $res[]=$favourite;
-            }
-            return response()->json(['users'=>$res]);
+
+            $users = User::whereRelation('favourite', 'private', 0)->get();
+
+            return response()->json($users);
+
     }
 
     public function addFavourites(Request $request){
@@ -80,7 +81,7 @@ class UsersController extends Controller
             'user_id'=>$user->id,
             'favourite_id'=>$request->id
         ]);
-
+        
         $fav->save();
     }
 
