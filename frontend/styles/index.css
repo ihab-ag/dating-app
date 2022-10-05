@@ -254,6 +254,9 @@ header ul{
     margin-top: auto;
     gap: 5px;
 }
+chat > .flex-row *{
+    height: 100%;
+}
 .chat > .flex-row > .input__text{
     width: 70%;
 }
