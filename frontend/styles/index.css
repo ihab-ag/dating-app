@@ -198,6 +198,9 @@ header  * {
     color: inherit;
     cursor: pointer;
 }
+header *:hover{
+    border-bottom: solid white 2px;
+}
 
 header ul{
     list-style: none;
