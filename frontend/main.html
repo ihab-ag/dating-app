@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Date Fast</title>
+        <link rel="stylesheet" href="styles/index.css">
+    </head>
+    <body>
+        <!-- header -->
+        <header class="container flex-row white">
+            <h3>Date Fast</h3>
+            <ul class="flex-row">
+                <li>Favourites</li>
+                <li>Profile</li>
+            </ul>
+        </header>
+        <!-- profile section -->
+        <section class="profile" id="profile">
+            <form id="signup" class="container flex-column" method="post">
+                <h2 class="red">Edit account:</h2>
+                <div class="flex-column">
+                    <label for="file">Picture:</label>
+                    <input type="file" class="input__file" name="file" id="file">
+                </div>
+                <div class="flex-column">
+                    <label for="name">Name:</label>
+                    <input type="text" class="input__text" name="name" id="name">
+                </div>
+                <div class="flex-column">
+                    <label for="bio">Bio:</label>
+                    <input type="text" class="input__text" name="bio" id="bio">
+                </div>
+                <div class="flex-column signup__location">
+                    <label>Location:</label>
+                    <div class="flex-row">
+                        <div class="flex-column">
+                            <label >Longitude:</label>
+                            <input type="text" name="longitude" disabled>
+                            <label >Latitude:</label>
+                            <input type="text" name="latitude" disabled>
+                        </div>
+                        <div class="flex-column">
+                            <label for=""class="hidden">.</label>
+                            <button class="btn" id="location-btn">Get<br>Location</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column radio-div">
+                    <label >Privacy:</label>
+                    <div class="flex-row">
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="private" value="0" id="public" checked>
+                            <label for="gender-male">Public</label>
+                        </div>
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="private" value="1" id="private">
+                            <label for="gender-female">Private</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column radio-div">
+                    <label >Gender:</label>
+                    <div class="flex-row">
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="gender" value="male" id="gender-male" checked>
+                            <label for="gender-male">Male</label>
+                        </div>
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="gender" value="female" id="gender-female">
+                            <label for="gender-female">Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column radio-div">
+                    <label >Interested in:</label>
+                    <div class="flex-row">
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="interest" value="male" id="interest-male" checked>
+                            <label for="interest-male">Male</label>
+                        </div>
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="interest" value="female" id="interest-female">
+                            <label for="interest-female">Female</label>
+                        </div>
+                        <div class="flex-row">
+                            <input type="radio" class="input__text" name="interest" value="both" id="interest-both">
+                            <label for="interest-both">Both</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-column">
+                    <input type="submit" value="Save" class="btn" id="signup-submit">
+                    <p class="light-grey" id="validation"><p>
+                </div>
+            </form>
+        </section>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="scripts/main.js"></script>
+    </body>
+</html>
