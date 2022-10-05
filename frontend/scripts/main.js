@@ -19,11 +19,15 @@
     const main_sect= document.querySelector('.home');
     const profile_sect= document.querySelector('.profile');
     const fav_sect= document.querySelector('.fav');
-
     // home
     const cards= document.querySelector('.cards');
     // favourite
     const fav_cards= document.querySelector('.fav-cards');
+    // chat
+    const chat_name =document.getElementById('chat-name');
+    const chat_messages=document.getElementById('messages');
+    const chat_message=document.getElementById('message');
+    const send_btn=document.getElementById('send-btn');
 // variables
     let url;
     const base_url="http://127.0.0.1:8000/api/";
@@ -112,7 +116,7 @@
     const createCard=(user,fav=false)=>{
         const card= document.createElement('div');
         card.classList="card flex-column";
-        let buttons= fav?`<button class="btn" onclick="block(${user.id})">chat</button>`:`<button class="btn" onclick="block(${user.id})">block</button>
+        let buttons= fav?`<button class="btn" onclick="openChat(${user.id},'${user.name}')">chat</button>`:`<button class="btn" onclick="block(${user.id})">block</button>
         <button class="btn" onclick="addFav(${user.id})">favourite</button>`;
         card.innerHTML=`<div class="card__img">
                         <img src="../backend/laravel-backend/public/images${user.id}.jpg" alt="">
@@ -135,6 +139,26 @@
         data = new FormData();
         data.append("id",id);
         postReq("add-block",data,token);
+    }
+    // open chat
+    const openChat=async(id,name)=>{
+        data= new FormData();
+        data.append("id",id);
+        request= await postReq("get-chat",data,token);
+        request= request.data;
+        let chat_id= request.chat_id;
+        let messages =request.messages;
+        chat_name.innerHTML=name;
+        loadChat(id,messages);
+        
+    }
+    const loadChat=(id,messages)=>{
+        chat_messages.innerHTML="";
+        for(const message of messages){
+            const content= document.createElement('p');
+            content.innerHTML = message.user_id==id?`<p class="away">${message.messages}</p>`:`<p class="here">${message.messages}</p>`
+            chat_messages.append(content);
+        }
     }
 // events
     file.onchange=async(e)=>{

@@ -110,14 +110,14 @@
         </section>
         <!-- chat section -->
         <section class="chat container">
-            <h3>Name</h3>
-            <div class="flex-column">
+            <h3 id="chat-name">Name</h3>
+            <div class="flex-column" id="messages">
                 <p class="away">message from someone</p>
                 <p class="here">message from me</p>
             </div>
             <div class="flex-row">
-                <input type="text" name='message' class="input__text" >
-                <button class="btn">Send</button>
+                <input type="text" id='message' class="input__text">
+                <button class="btn" id="send-btn">Send</button>
             </div>
         </section>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
