@@ -22,6 +22,17 @@ class UsersController extends Controller
         $long= $user->location->longitude;
         $lat= $user->location->latitude;
 
+        $block_exist=[];
+        $blocks=$user->block;
+        $blockedBy=$user->blockedby;
+
+        foreach($blocks as $block){
+            $block_exist[]=$block->id;
+        }
+        foreach($blockedBy as $block){
+            $block_exist[]=$block->id;
+        }
+
         $users = DB::table('users')
         ->join('locations', 'users.id', '=', 'locations.user_id')
         ->join('pictures', 'users.id', '=', 'pictures.user_id')
@@ -41,6 +52,10 @@ class UsersController extends Controller
         ->get();
 
         foreach($users as $key => $item){
+            if(in_array($item->id,$block_exist)){
+                unset($users[$key]);
+                continue;
+            }
             if($item->interest!=$gender&&$item->interest!='both')
                 unset($users[$key]);
         }
