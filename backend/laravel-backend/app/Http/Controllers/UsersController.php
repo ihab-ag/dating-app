@@ -68,7 +68,7 @@ class UsersController extends Controller
     public function getFavourites(){
             $user=auth::user();
 
-            $users = User::whereRelation('favourite', 'private', 0)->get();
+            $users = $user->favourite;
 
             return response()->json($users);
 

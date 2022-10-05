@@ -112,7 +112,7 @@
         let buttons= fav?`<button class="btn" onclick="block(${user.id})">chat</button>`:`<button class="btn" onclick="block(${user.id})">block</button>
         <button class="btn" onclick="addFav(${user.id})">favourite</button>`;
         card.innerHTML=`<div class="card__img">
-                        <img src="../backend/laravel-backend${user.url.slice(2)}" alt="">
+                        <img src="../backend/laravel-backend/public/images${user.id}.jpg" alt="">
                         </div>
                     <h3>${user.name}, ${user.age}</h3>
                     <p>${user.bio}</p>
