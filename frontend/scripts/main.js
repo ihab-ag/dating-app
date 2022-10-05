@@ -79,7 +79,6 @@
     }
     // send post request
     const postReq= async (route,data,token=null)=>{
-        let response;
     try{
         return await axios.post(base_url+route,data,{
             headers: {
@@ -107,7 +106,6 @@
     const getUsers= async()=>{
         const route='get-users';
         let response= await postReq(route," ",token);
-        console.log(response.data)
         for(const user of response.data){
             createCard(user);
         }
@@ -187,8 +185,8 @@
     }
     // refresh token
     const refresh=async()=>{
-        let route='refresh';
-        let response= await postReq(route, " ");
+        const route='refresh';
+        const response= await postReq(route, " ");
         localStorage.setItem("token",response['data'].authorisation['token']);
     }
 // events
