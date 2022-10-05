@@ -17,6 +17,10 @@
     const profile= document.getElementById('profile');
     const main_sect= document.querySelector('.home');
     const profile_sect= document.querySelector('.profile');
+    // home
+    const cards= document.querySelector('.cards');
+    // favourite
+    const fav_cards= document.querySelector('.fav-cards');
 // variables
     let url;
     const base_url="http://127.0.0.1:8000/api/";
@@ -96,20 +100,20 @@
         }
     }
     // create user card
-    const createCard=(user)=>{
+    const createCard=(user,fav=false)=>{
         const card= document.createElement('div');
         card.classList="card flex-column";
+        let buttons= fav?`<button class="btn" onclick="block(${user.id})">chat</button>`:`<button class="btn" onclick="block(${user.id})">block</button>
+        <button class="btn" onclick="addFav(${user.id})">favourite</button>`;
         card.innerHTML=`<div class="card__img">
                         <img src="../backend/laravel-backend${user.url.slice(2)}" alt="">
                         </div>
                     <h3>${user.name}, ${user.age}</h3>
                     <p>${user.bio}</p>
                     <div class="flex-row">
-                        <button class="btn" onclick="block(${user.id})">block</button>
-                        <button class="btn" onclick="addFav(${user.id})">favourite</button>
+                        ${buttons}
                     </div>`;
-        const cards= document.querySelector('.cards');
-        cards.appendChild(card);
+        fav?fav_cards.appendChild(card):cards.appendChild(card);
     }
     // add to Fav
     const addFav=(id)=>{
