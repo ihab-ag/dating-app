@@ -61,8 +61,12 @@ class UsersController extends Controller
             if($item->interest!=$gender&&$item->interest!='both')
                 unset($users[$key]);
         }
+        $response=[];
 
-        return response()->json($users);
+        foreach($users as $user){
+            $response[]=$user;
+        }
+        return response()->json($response);
         
     }
 
