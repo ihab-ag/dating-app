@@ -10,9 +10,9 @@
     <body>
         <!-- header -->
         <header class="container flex-row white">
-            <h3 id="main">Date Fast</h3>
+            <h2 id="main">Date Fast</h2>
             <ul class="flex-row">
-                <li>Favourites</li>
+                <li id="fav">Favourites</li>
                 <li id="profile">Profile</li>
             </ul>
         </header>
@@ -100,6 +100,25 @@
         <section class="home">
             <div class="container cards">
                 <!-- cards go here -->
+            </div>
+        </section>
+        <!-- Fav section -->
+        <section class="fav">
+            <div class="container fav-cards cards">
+                <!-- cards go here -->
+            </div>
+        </section>
+        <!-- chat section -->
+        <section class="chat container" id="chat">
+            <div id="close" class="close">X</div>
+            <h3 id="chat-name">Welcome</h3>
+            <div class="flex-column" id="messages">
+                <p class="away">Go to favourites</p>
+                <p class="here">and start a chat!</p>
+            </div>
+            <div class="flex-row">
+                <input type="text" id='message' class="input__text">
+                <button class="btn" id="send-btn">Send</button>
             </div>
         </section>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

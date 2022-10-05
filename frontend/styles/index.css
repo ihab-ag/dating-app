@@ -35,6 +35,7 @@ input[type=radio]{
     display: flex;
     flex-direction: column;
     gap:10px;
+    height: 100%;
 }
 
 .flex-row{
@@ -197,6 +198,9 @@ header  * {
     color: inherit;
     cursor: pointer;
 }
+header *:hover{
+    border-bottom: solid white 2px;
+}
 
 header ul{
     list-style: none;
@@ -234,6 +238,61 @@ header ul{
     border-radius: 1% 1% 0 0;
     height: auto;
     width:100%;
+}
+/* fav section */
+.fav{
+    display:none;
+}
+/* chat */
+.chat{
+    position: absolute;
+    top: 100px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 450px;
+    width: 300px;
+}
+.chat .close{
+    position: absolute;
+    right: 36px;
+    top: auto;
+}
+.chat > .flex-row{
+    margin-top: auto;
+    gap: 5px;
+}
+chat > .flex-row *{
+    height: 100%;
+}
+.chat > .flex-row > .input__text{
+    width: 70%;
+}
+.chat > .flex-row > .btn{
+    width: 30%;
+}
+.chat > .flex-column{
+    overflow-y: scroll;
+    gap: 7px;
+    padding: 7px 2px;
+}
+.away{
+    background: #eb2e2e;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    margin-right: auto;
+    width: 70%;
+}
+.here{
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    color: #eb2e2e;
+    margin-left: auto;
+    border: 1px solid;
+    width: 70%;
 }
 /* media queries */
 @media screen and (min-width:700px) {

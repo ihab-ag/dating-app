@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Picture extends Model
+class Message extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'url'
+        'user_id',
+        'chat_id',
+        'messages'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class,id);
-    }
-    
 }

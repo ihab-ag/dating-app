@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_blocks', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->id();
             $table->unsignedBigInteger('blocked_id');
             $table->timestamps();
+            $table->primary(['blocked_id', 'user_id']);
         });
     }
 

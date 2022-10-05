@@ -42,9 +42,14 @@ class AuthController extends Controller
             'longitude' => $request -> input('longitude'),
             'latitude' => $request -> input('latitude'),
         ]);
+
+        $picture= new Picture([
+            'url'=>" "
+        ]);
     // save user and location
         $user->save();
         $user->location()->save($location);
+        $user->picture()->save($picture);
         return response()->json([
             "message"=>"Success",
             200
