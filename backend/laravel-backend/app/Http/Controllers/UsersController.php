@@ -17,19 +17,17 @@ class UsersController extends Controller
     public function getUsers(){
         $user=auth::user();
 
-        $long_max= $user->location->longitude +50;
-        $lat_max= $user->location->latitude +50;
-        $long_min= $user->location->longitude -50;
-        $lat_min= $user->location->latitude -50;
+        
+        $long= $user->location->longitude;
+        $lat= $user->location->latitude;
+        
 
         $users = DB::table('users')
         ->join('locations', 'users.id', '=', 'locations.user_id')
         ->join('pictures', 'users.id', '=', 'pictures.user_id')
-        ->whereBetween('longitude', [$long_min, $long_max])
-        ->whereBetween('latitude', [$lat_min, $lat_max])
+        ->orderby(DB::raw('(POW((longitude-'.$long.'),2) + POW((latitude-'.$lat.'),2))'))
+        ->whereNot('id',$user->id)
         ->get();
-        // ->whereNot('id',$user->id)
-        
 
         return response()->json($users);
         
