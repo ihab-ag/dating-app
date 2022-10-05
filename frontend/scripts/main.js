@@ -153,8 +153,12 @@
         chat_name.innerHTML=name;
         chat.style.display='flex';
         loadChat(id,messages);
-
+        send_btn.onclick=(e)=>{
+            e.preventDefault();
+            sendMessage(id,chat_id,name);
+        } ;
     }
+    // get chat messages
     const loadChat=(id,messages)=>{
         chat_messages.innerHTML="";
         for(const message of messages){
@@ -162,6 +166,15 @@
             content.innerHTML = message.user_id==id?`<p class="away">${message.messages}</p>`:`<p class="here">${message.messages}</p>`
             chat_messages.append(content);
         }
+    }
+
+    const sendMessage=async(id,chat_id,name)=>{
+        data= new FormData();
+        data.append('chat_id',chat_id);
+        data.append('message',chat_message.value);
+        chat_message.value="";
+        await postReq('send-message',data,token);
+        openChat(id,name);
     }
 // events
     file.onchange=async(e)=>{
@@ -184,7 +197,6 @@
         }
     }
     main.onclick=()=>{
-
         profile_sect.style.display="none";
         main_sect.style.display="block";
         fav_sect.style.display="none";
