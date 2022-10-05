@@ -24,6 +24,8 @@
     // favourite
     const fav_cards= document.querySelector('.fav-cards');
     // chat
+    const chat =document.getElementById('chat');
+    const close =document.getElementById('close');
     const chat_name =document.getElementById('chat-name');
     const chat_messages=document.getElementById('messages');
     const chat_message=document.getElementById('message');
@@ -149,8 +151,9 @@
         let chat_id= request.chat_id;
         let messages =request.messages;
         chat_name.innerHTML=name;
+        chat.style.display='flex';
         loadChat(id,messages);
-        
+
     }
     const loadChat=(id,messages)=>{
         chat_messages.innerHTML="";
@@ -195,6 +198,9 @@
         main_sect.style.display="none";
         profile_sect.style.display="none";
         fav_sect.style.display="block";
+    }
+    close.onclick=()=>{
+        chat.style.display='none';
     }
     // main
     getUserInfo();

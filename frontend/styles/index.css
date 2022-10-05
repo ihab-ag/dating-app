@@ -243,12 +243,18 @@ header ul{
 /* chat */
 .chat{
     position: absolute;
+    top: 100px;
     right: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 450px;
     width: 300px;
+}
+.chat .close{
+    position: absolute;
+    right: 36px;
+    top: auto;
 }
 .chat > .flex-row{
     margin-top: auto;
