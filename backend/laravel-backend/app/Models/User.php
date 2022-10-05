@@ -94,16 +94,16 @@ class User extends Authenticatable implements JWTSubject
 
     public function chat()
     {
-        return $this->belongsToMany(User::class, 'chats', 'user1_id', 'user2_id');
+        return $this->belongsToMany(User::class, 'chats', 'user1_id', 'user2_id')->withPivot('id');
     }
 
     public function chatwith()
     {
-        return $this->belongsToMany(User::class, 'chats', 'user2_id', 'user1_id');
+        return $this->belongsToMany(User::class, 'chats', 'user2_id', 'user1_id')->withPivot('id');
     }
 
-    public function messages()
+    public function message()
     {
-        return $this->belongsToMany(Chat::class, 'messages', 'user2_id', 'user1_id');
+        return $this->belongsToMany(Chat::class, 'messages', 'user_id', 'chat_id')->withPivot('message');
     }
 }

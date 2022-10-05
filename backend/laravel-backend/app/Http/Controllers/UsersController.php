@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\Picture;
+use App\Models\Message;
 use App\Models\user_favourites;
 use App\Models\user_blocks;
 
@@ -94,6 +95,40 @@ class UsersController extends Controller
         ]);
 
         $blocked->save();
+    }
+
+    public function getChat(Request $request){
+
+        $user1=Auth::user();
+        $user2=User::where('id',$request->id)->limit(1)->get();
+        $user2= $user2[0];
+
+        $chat1= $user1->chat->where('id',$user2->id);
+        $chat2= $user2->chat->where('id',$user1->id);
+
+        if(count($chat2)==1){
+            $chat= $chat2;
+        }
+        elseif(count($chat1)==1){
+            $chat= $chat1;
+        }
+        else{
+            $user1->chat->attach($user2->id);
+            $chat= $user1->chat->where('id',$user2->id);
+        }
+
+        foreach($chat as $item){
+           $chat_id= $item->pivot->id; 
+        }
+        $response=[];
+        $messages= Message::where('chat_id',$chat_id)->get();
+        foreach($messages as $message){
+            $response[]= $message;
+        }
+        return response()->json([
+            'chat_id'=> $chat_id,
+            'messages'=>$response
+        ]);
     }
 
 }
