@@ -99,6 +99,12 @@
             createCard(user);
         }
     }
+    const getFavs= async()=>{
+        let response= await postReq('favourites'," ",token);
+        for(const user of response.data){
+            createCard(user,true);
+        }
+    }
     // create user card
     const createCard=(user,fav=false)=>{
         const card= document.createElement('div');
@@ -159,3 +165,4 @@
     // main
     getUserInfo();
     getUsers();
+    getFavs();
