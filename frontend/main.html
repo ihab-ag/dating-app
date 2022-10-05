@@ -12,7 +12,7 @@
         <header class="container flex-row white">
             <h3 id="main">Date Fast</h3>
             <ul class="flex-row">
-                <li>Favourites</li>
+                <li id="fav">Favourites</li>
                 <li id="profile">Profile</li>
             </ul>
         </header>
@@ -106,6 +106,18 @@
         <section class="fav">
             <div class="container fav-cards cards">
                 <!-- cards go here -->
+            </div>
+        </section>
+        <!-- chat section -->
+        <section class="chat">
+            <h3>Name</h3>
+            <div class="flex-columm">
+                <p class="away">message from someone</p>
+                <p class="home">message from me</p>
+            </div>
+            <div class="flex-row">
+                <input type="text" name='message' class="input__text" >
+                <button class="btn">Send</button>
             </div>
         </section>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

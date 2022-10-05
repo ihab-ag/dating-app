@@ -15,8 +15,11 @@
     // header
     const main= document.getElementById('main');
     const profile= document.getElementById('profile');
+    const fav= document.getElementById('fav');
     const main_sect= document.querySelector('.home');
     const profile_sect= document.querySelector('.profile');
+    const fav_sect= document.querySelector('.fav');
+
     // home
     const cards= document.querySelector('.cards');
     // favourite
@@ -157,10 +160,17 @@
 
         profile_sect.style.display="none";
         main_sect.style.display="block";
+        fav_sect.style.display="none";
     }
     profile.onclick=()=>{
         main_sect.style.display="none";
         profile_sect.style.display="block";
+        fav_sect.style.display="none";
+    }
+    fav.onclick=()=>{
+        main_sect.style.display="none";
+        profile_sect.style.display="none";
+        fav_sect.style.display="block";
     }
     // main
     getUserInfo();

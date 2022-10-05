@@ -235,6 +235,10 @@ header ul{
     height: auto;
     width:100%;
 }
+/* fav section */
+.fav{
+    display:none;
+}
 /* media queries */
 @media screen and (min-width:700px) {
 
