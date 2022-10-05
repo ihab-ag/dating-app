@@ -43,7 +43,7 @@ const validation=()=>{
     if(name.value==""){
         return "Name cannot be empty";
     }
-    else if((!(/\w{3,}[@]\w{5,}[.][a-zA-Z]*$/).test(email.value))||email.value==""){
+    else if((!(/\w{3,}[@]\w{2,}[.][a-zA-Z]*$/).test(email.value))||email.value==""){
         return "Email must be in the following format: name@mail.com";
     }
     else if((!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(password.value))||password.value==""){
