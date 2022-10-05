@@ -71,7 +71,7 @@
     // get image uploaded
     const getImage=(e)=>{
         let image_file= e.target.files[0];
-                reader= new FileReader;
+                const reader= new FileReader;
                 reader.onload=(e)=>{
                   url= reader.result.split(",")[1];
                 }
@@ -79,6 +79,7 @@
     }
     // send post request
     const postReq= async (route,data,token=null)=>{
+        let response;
     try{
         return await axios.post(base_url+route,data,{
             headers: {
@@ -90,7 +91,8 @@
     }
     // get info of user to fill profile
     const getUserInfo= async()=>{
-        let response= await postReq('get-user'," ",token);
+        const route='get-user';
+        let response= await postReq(route," ",token);
         response=response.data.user[0];
         name.value=response.name;
         bio.value=response.bio;
@@ -103,14 +105,16 @@
     }
     // }get users from db
     const getUsers= async()=>{
-        let response= await postReq('get-users'," ",token);
+        const route='get-users';
+        let response= await postReq(route," ",token);
         console.log(response.data)
         for(const user of response.data){
             createCard(user);
         }
     }
     const getFavs= async()=>{
-        let response= await postReq('favourites'," ",token);
+        const route='favourites';
+        let response= await postReq(route," ",token);
         for(const user of response.data){
             createCard(user,true);
         }
@@ -133,21 +137,24 @@
     }
     // add to Fav
     const addFav=(id)=>{
-        data = new FormData();
+        const route="add-favourite";
+        const data = new FormData();
         data.append("id",id);
-        postReq("add-favourite",data,token);
+        postReq(route,data,token);
     }
     // block
     const block=(id)=>{
-        data = new FormData();
+        const route="add-block";
+        const data = new FormData();
         data.append("id",id);
-        postReq("add-block",data,token);
+        postReq(route,data,token);
     }
     // open chat
     const openChat=async(id,name)=>{
-        data= new FormData();
+        const route="get-chat";
+        const data= new FormData();
         data.append("id",id);
-        request= await postReq("get-chat",data,token);
+        let request= await postReq(route,data,token);
         request= request.data;
         let chat_id= request.chat_id;
         let messages =request.messages;
@@ -170,17 +177,18 @@
     }
     // send messages
     const sendMessage=async(id,chat_id,name)=>{
-        letdata= new FormData();
+        const route='send-message';
+        const data= new FormData();
         data.append('chat_id',chat_id);
         data.append('message',chat_message.value);
         chat_message.value="";
-        await postReq('send-message',data,token);
+        await postReq(route,data,token);
         openChat(id,name);
     }
     // refresh token
     const refresh=async()=>{
         let route='refresh';
-        let response= await postReq(route,data);
+        let response= await postReq(route, " ");
         localStorage.setItem("token",response['data'].authorisation['token']);
     }
 // events
