@@ -82,7 +82,41 @@
         gender.value=response.gender;
         interest.value=response.interest;
         url=response.picture.url;
-
+    }
+    // }get users from db
+    const getUsers= async()=>{
+        let response= await postReq('get-users'," ",token);
+        for(const user of response.data){
+            createCard(user);
+        }
+    }
+    // create user card
+    const createCard=(user)=>{
+        const card= document.createElement('div');
+        card.classList="card flex-column";
+        card.innerHTML=`<div class="card__img">
+                        <img src="../backend/laravel-backend${user.url.slice(2)}" alt="">
+                        </div>
+                    <h3>${user.name}, ${user.age}</h3>
+                    <p>${user.bio}</p>
+                    <div class="flex-row">
+                        <button class="btn" onclick="block(${user.id})">block</button>
+                        <button class="btn" onclick="addFav(${user.id})">favourite</button>
+                    </div>`;
+        const cards= document.querySelector('.cards');
+        cards.appendChild(card);
+    }
+    // add to Fav
+    const addFav=(id)=>{
+        data = new FormData();
+        data.append("id",id);
+        postReq("add-favourite",data,token);
+    }
+    // block
+    const block=(id)=>{
+        data = new FormData();
+        data.append("id",id);
+        postReq("add-block",data,token);
     }
 // events
     file.onchange=async(e)=>{
@@ -106,3 +140,4 @@
     }
     // main
     getUserInfo();
+    getUsers();

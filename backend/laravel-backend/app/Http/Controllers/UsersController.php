@@ -27,8 +27,8 @@ class UsersController extends Controller
         ->join('pictures', 'users.id', '=', 'pictures.user_id')
         ->whereBetween('longitude', [$long_min, $long_max])
         ->whereBetween('latitude', [$lat_min, $lat_max])
-        ->whereNot('id',$user->id)
         ->get();
+        // ->whereNot('id',$user->id)
         
 
         return response()->json($users);
@@ -58,7 +58,7 @@ class UsersController extends Controller
     public function addBlock(Request $request){
         $user=auth::user();
 
-        $fblocked = new user_blocks([
+        $blocked = new user_blocks([
             'user_id'=>$user->id,
             'blocked_id'=>$request->id
         ]);
