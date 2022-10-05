@@ -17,16 +17,27 @@ class UsersController extends Controller
     public function getUsers(){
         $user=auth::user();
 
-        
+        $gender= $user->gender;
+        $interest=$user->interest;
         $long= $user->location->longitude;
         $lat= $user->location->latitude;
-        
 
         $users = DB::table('users')
         ->join('locations', 'users.id', '=', 'locations.user_id')
         ->join('pictures', 'users.id', '=', 'pictures.user_id')
+        ->whereNot('id',$user->id);
+        
+        if($interest=="male"){
+            $users= $users
+            ->where('gender','male');
+        }
+        elseif($interest=="female"){
+            $users= $users
+            ->where('gender','female');
+        }
+        
+        $users= $users
         ->orderby(DB::raw('(POW((longitude-'.$long.'),2) + POW((latitude-'.$lat.'),2))'))
-        ->whereNot('id',$user->id)
         ->get();
 
         return response()->json($users);
@@ -63,4 +74,5 @@ class UsersController extends Controller
 
         $blocked->save();
     }
+
 }
