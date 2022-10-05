@@ -35,10 +35,15 @@ class UsersController extends Controller
             $users= $users
             ->where('gender','female');
         }
-        
+
         $users= $users
         ->orderby(DB::raw('(POW((longitude-'.$long.'),2) + POW((latitude-'.$lat.'),2))'))
         ->get();
+
+        foreach($users as $key => $item){
+            if($item->interest!=$gender&&$item->interest!='both')
+                unset($users[$key]);
+        }
 
         return response()->json($users);
         
