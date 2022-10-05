@@ -104,6 +104,7 @@
     // }get users from db
     const getUsers= async()=>{
         let response= await postReq('get-users'," ",token);
+        console.log(response.data)
         for(const user of response.data){
             createCard(user);
         }
@@ -167,14 +168,20 @@
             chat_messages.append(content);
         }
     }
-
+    // send messages
     const sendMessage=async(id,chat_id,name)=>{
-        data= new FormData();
+        letdata= new FormData();
         data.append('chat_id',chat_id);
         data.append('message',chat_message.value);
         chat_message.value="";
         await postReq('send-message',data,token);
         openChat(id,name);
+    }
+    // refresh token
+    const refresh=async()=>{
+        let route='refresh';
+        let response= await postReq(route,data);
+        localStorage.setItem("token",response['data'].authorisation['token']);
     }
 // events
     file.onchange=async(e)=>{
