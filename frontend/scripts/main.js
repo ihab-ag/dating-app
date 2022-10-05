@@ -186,7 +186,9 @@
     // refresh token
     const refresh=async()=>{
         const route='refresh';
-        const response= await postReq(route, " ");
+        const response= await postReq(route, " ",token);
+        
+        console.log(response)
         localStorage.setItem("token",response['data'].authorisation['token']);
     }
 // events
