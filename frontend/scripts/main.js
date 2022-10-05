@@ -12,6 +12,11 @@
     const file= signup_form.elements.file;
     const validation_msg= document.getElementById('validation');
     const signup_submit=document.getElementById('signup-submit');
+    // header
+    const main= document.getElementById('main');
+    const profile= document.getElementById('profile');
+    const main_sect= document.querySelector('.home');
+    const profile_sect= document.querySelector('.profile');
 // variables
     let url;
     const base_url="http://127.0.0.1:8000/api/";
@@ -137,6 +142,15 @@
             data.append('url',url);
             await postReq(route,data,token);
         }
+    }
+    main.onclick=()=>{
+
+        profile_sect.style.display="none";
+        main_sect.style.display="block";
+    }
+    profile.onclick=()=>{
+        main_sect.style.display="none";
+        profile_sect.style.display="block";
     }
     // main
     getUserInfo();

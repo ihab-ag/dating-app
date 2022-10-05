@@ -205,10 +205,12 @@ header ul{
     width:120px;
 }
 /* profile section */
+.profile{
+    display: none;
+}
 .profile >form{
     margin:auto;
     width:400px;
-    display:none;
 }
 /* main section */
 .cards{
